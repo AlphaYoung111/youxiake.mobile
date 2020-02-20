@@ -1,6 +1,8 @@
 <template>
   <div class="banner">
-    <div v-show="false">黑色</div>
+    <transition enter-active-class="bounceInLeft" leave-active-class="bounceOutLeft">
+      <div class="banner-left animated" v-show="showSlide">黑色</div>
+    </transition>
     <div class="banner-header">
       <div class="banner-top">
         <div class="top-left">
@@ -11,12 +13,12 @@
           <i class="iconfont">&#xe64d;</i>泰国
         </div>
         <div class="top-right">
-          <img src="@/assets/img/show.png" alt />
+          <img src="@/assets/img/show.png" @click="toShow" />
         </div>
       </div>
       <!-- 轮播区域 -->
       <div class="banner-swiper">
-        <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+        <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
           <swiper-slide>
             <img src="@/assets/img/banner1.png" alt />
@@ -43,12 +45,27 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         }
-      }
+      },
+      showSlide: false
+    }
+  },
+  methods: {
+    toShow() {
+      this.showSlide = !this.showSlide
     }
   }
 }
 </script>
 <style scoped>
+.banner-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background: #000;
+  height: 100%;
+  width: 6.666rem;
+}
 .banner-header {
   position: relative;
   width: 100%;
@@ -69,18 +86,18 @@ export default {
 .top-left {
   color: #fff;
   font-size: 0.4266666rem;
-  padding:.2rem .4rem ;
+  padding: 0.2rem 0.4rem;
 }
 .top-search {
   flex: 1;
   color: #333;
   background: #fff;
-  border-radius: .1rem;
-  font-size: .373333rem;
-  padding:.2rem;
+  border-radius: 0.1rem;
+  font-size: 0.373333rem;
+  padding: 0.2rem;
 }
 .top-right {
-  padding:.2rem 0.4rem;
+  padding: 0.2rem 0.4rem;
 }
 .top-right img {
   widows: 0.53333rem;

@@ -16,7 +16,12 @@ import './assets/js/font'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 import './assets/css/swiper.css'
-
+// 动画库
+import animate from 'animate.css'
+Vue.use(animate)
+// axios
+import axios from 'axios'
+Vue.prototype.$http= axios
 Vue.config.productionTip = false
 
 new Vue({
