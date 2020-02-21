@@ -5,8 +5,8 @@
     </transition>
     <div class="banner-header">
       <div class="banner-top">
-        <div class="top-left">
-          北京
+        <div class="top-left" @click="toCity">
+          {{cityName}}
           <i class="iconfont">&#xe6aa;</i>
         </div>
         <div class="top-search">
@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
@@ -49,9 +50,15 @@ export default {
       showSlide: false
     }
   },
+  computed:{
+    ...mapState(['cityName'])
+  },
   methods: {
     toShow() {
       this.showSlide = !this.showSlide
+    },
+    toCity(){
+      this.$router.push('/city')
     }
   }
 }

@@ -11,6 +11,7 @@
         <div
           class="bottom-header"
           :style="{'background':'url('+item.imgUrl+')  no-repeat center center'}"
+          @click="toDetail"
         >
           <div class="header-info">
             <span>{{item.Introduction}}</span>
@@ -18,7 +19,7 @@
           </div>
         </div>
         <ul>
-          <li v-for="city in item.cityList" :key="city.id">
+          <li v-for="city in item.cityList" :key="city.id" @click="toDetail">
             <img :src="city.imgUrl" alt />
             <span>{{city.title}}</span>
             <span>￥{{city.price}}起</span>
@@ -36,6 +37,11 @@ export default {
       default() {
         return []
       }
+    }
+  },
+  methods:{
+    toDetail(){
+      this.$router.push('/detail')
     }
   }
 }
@@ -107,20 +113,26 @@ export default {
 }
 .like-bottom ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 0.3rem;
 }
 .like-bottom ul li {
-  flex: 1;
+  width: 2.96rem;
 }
 .like-bottom ul li img {
-  width: 2.96rem;
+  width: 100%;
   height: 1.95rem;
 }
 .like-bottom ul li span:nth-child(2) {
   font-size: 0.35rem;
-  display: block;
+  display: -webkit-box;
   margin-top: 0.2rem;
+  width: 100%;
+  height: 0.96rem;
+  line-height: .48rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .like-bottom ul li span:nth-child(3) {
   font-size: 0.35rem;
